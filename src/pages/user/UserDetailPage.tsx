@@ -60,9 +60,6 @@ const Container = (props: ContainerProps) => {
   const [updateUser, updatedResult] = useUpdateUserMutation();
   const [deleteUser, deletedResult] = useDeleteUserMutation();
   const [userInput, setUserInput] = useState<User>({} as User);
-  console.log("error", error);
-  console.log("updatedResult", updatedResult);
-  console.log("deletedResult", deletedResult);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {

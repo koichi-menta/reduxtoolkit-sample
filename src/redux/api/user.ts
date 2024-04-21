@@ -14,9 +14,9 @@ export const userApi = createApi({
   reducerPath: "userApi",
   // APIの基準となるURL
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_BASE_URL,
+    baseUrl: import.meta.env.VITE_BASE_URL,
     headers: {
-      "X-MICROCMS-API-KEY": process.env.REACT_APP_API_KEY || "",
+      "X-MICROCMS-API-KEY": import.meta.env.VITE_API_KEY || "",
     },
   }),
   tagTypes: ["User"],
