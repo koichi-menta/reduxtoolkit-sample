@@ -1,26 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
+export type ReserveInput = {
+  reserver: string;
+  dateOfUse: string;
+  remarks: string;
+};
+
 const initialState = {
-  setting: {
-    companyName: "",
+  reserve: {
+    reserver: "",
+    dateOfUse: "",
+    remarks: "",
   },
 };
 
-export const counterSlice = createSlice({
-  name: "settingInput",
+export const reserveSlice = createSlice({
+  name: "reserveInput",
   initialState,
   reducers: {
-    settingInput: (state, action) => {
-      if (action.payload.name === "companyName") {
-        state.setting.companyName = action.payload.value;
-      }
+    reserveInput: (state, action: PayloadAction<ReserveInput>) => {
+      state.reserve = action.payload;
     },
   },
 });
 
-export const { settingInput } = counterSlice.actions;
+export const { reserveInput } = reserveSlice.actions;
 
-export const selectCount = (state: RootState) => state.counter.setting;
+export const selectCount = (state: RootState) => state.counter.reserve;
 
-export default counterSlice.reducer;
+export default reserveSlice.reducer;

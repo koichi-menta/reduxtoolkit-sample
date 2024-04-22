@@ -7,23 +7,25 @@ type Props = {
 } & ContainerProps;
 
 const Component = ({ data }: Props) => (
-  <div>
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">User List</Link>
-        </li>
-        <li>
-          <Link to="/setting">Setting</Link>
-        </li>
-        <li>
-          <Link to="/nothing-here">Nothing Here</Link>
-        </li>
-      </ul>
-      <p>{data?.name}</p>
-    </nav>
+  <>
+    <div className="border-b-[1px]">
+      <nav className="w-[1000px] flex justify-between p-2 mx-auto">
+        <ul className="flex gap-4">
+          <li className="text-center p-1">
+            <Link to="/">User List</Link>
+          </li>
+          <li className="text-center p-1">
+            <Link to="/setting">Setting</Link>
+          </li>
+          <li className="text-center p-1">
+            <Link to="/nothing-here">Nothing Here</Link>
+          </li>
+        </ul>
+        <p>{data?.name}</p>
+      </nav>
+    </div>
     <Outlet />
-  </div>
+  </>
 );
 
 const Container = (props: ContainerProps) => {

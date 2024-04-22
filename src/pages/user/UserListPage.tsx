@@ -11,16 +11,40 @@ type Props = {
 const Component = ({ isLoading, data }: Props) => (
   <div>
     {isLoading && <p>ロード中...</p>}
-    {!isLoading &&
-      data.map((user) => (
-        <div key={user.id}>
-          <p>ID: {user.id}</p>
-          <p>名前: {user.name}</p>
-          <p>年齢: {user.age}</p>
-          <p>趣味: {user.hoby}</p>
-          <Link to={`/user/${user.id}`}>詳細</Link>
-        </div>
-      ))}
+    {!isLoading && (
+      <>
+        <h2 className="text-center text-xl mt-4 font-bold">ユーザーリスト</h2>
+        <table className="w-[600px] mx-auto mt-6">
+          <thead>
+            <tr className="text-left border-b-[1px]">
+              <th>ID</th>
+              <th>名前</th>
+              <th>年齢</th>
+              <th>趣味</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((user) => (
+              <tr key={user.id} className="border-t-[1px] first:border-t-0">
+                <td className="p-2">{user.id}</td>
+                <td className="p-2">{user.name}</td>
+                <td className="p-2">{user.age}</td>
+                <td className="p-2">{user.hoby}</td>
+                <td className="p-2">
+                  <Link
+                    to={`/user/${user.id}`}
+                    className="block border-[1px] py-1 px-2 text-center"
+                  >
+                    詳細
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    )}
   </div>
 );
 

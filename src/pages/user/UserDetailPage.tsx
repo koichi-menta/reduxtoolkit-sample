@@ -27,28 +27,60 @@ const Component = ({
   <div>
     {isLoading && <p>ロード中...</p>}
     {!isLoading && (
-      <div>
-        <input
-          type="text"
-          value={user?.name || ""}
-          name="name"
-          onChange={(e) => handleChangeInput(e)}
-        />
-        <input
-          type="text"
-          value={user?.age || ""}
-          name="age"
-          onChange={(e) => handleChangeInput(e)}
-        />
-        <input
-          type="text"
-          value={user?.hoby || ""}
-          name="hoby"
-          onChange={(e) => handleChangeInput(e)}
-        />
-
-        <button onClick={handleUpdate}>更新</button>
-        <button onClick={handleDelete}>削除</button>
+      <div className="w-[500px] mx-auto">
+        <div>
+          <label htmlFor="name">
+            名前：
+            <input
+              id="name"
+              type="text"
+              value={user?.name || ""}
+              name="name"
+              className="border-[1px]"
+              onChange={(e) => handleChangeInput(e)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="age">
+            年齢：
+            <input
+              id="age"
+              type="text"
+              value={user?.age || ""}
+              name="age"
+              className="border-[1px]"
+              onChange={(e) => handleChangeInput(e)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="hoby">
+            趣味：
+            <input
+              id="hoby"
+              type="text"
+              value={user?.hoby || ""}
+              name="hoby"
+              className="border-[1px]"
+              onChange={(e) => handleChangeInput(e)}
+            />
+          </label>
+        </div>
+        <div className="flex flex-col justify-between">
+          <button
+            className="border-[1px] py-1 px-4 mt-8"
+            onClick={handleUpdate}
+          >
+            更新
+          </button>
+          <button
+            className="border-[1px] py-1 px-4 mt-8"
+            onClick={handleDelete}
+          >
+            削除
+          </button>
+        </div>
       </div>
     )}
   </div>
@@ -67,18 +99,6 @@ const Container = (props: ContainerProps) => {
         setUserInput({
           ...userInput,
           age: Number(e.target.value),
-        });
-        break;
-      case "name":
-        setUserInput({
-          ...userInput,
-          name: e.target.value,
-        });
-        break;
-      case "hoby":
-        setUserInput({
-          ...userInput,
-          hoby: e.target.value,
         });
         break;
       default:
