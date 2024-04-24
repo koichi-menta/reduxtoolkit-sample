@@ -17,9 +17,6 @@ const Component = ({ data }: Props) => (
           <li className="text-center p-1">
             <Link to="/setting">Setting</Link>
           </li>
-          <li className="text-center p-1">
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li>
         </ul>
         <p>{data?.name}</p>
       </nav>

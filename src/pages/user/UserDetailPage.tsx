@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import {
   useGetUserDetailQuery,
-  useUpdateUserMutation,
   useDeleteUserMutation,
   type User,
 } from "../../redux/api/user";
-import { useParams } from "react-router-dom";
+import { userEditInput } from "../../redux/slice/userEditInputSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type ContainerProps = {};
 type Props = {
   isLoading: boolean;
   user: User | undefined;
-  handleUpdate: () => void;
+  handleConfirm: () => void;
   handleDelete: () => void;
   handleChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 } & ContainerProps;
@@ -20,7 +21,7 @@ type Props = {
 const Component = ({
   isLoading,
   user,
-  handleUpdate,
+  handleConfirm,
   handleChangeInput,
   handleDelete,
 }: Props) => (
@@ -70,9 +71,9 @@ const Component = ({
         <div className="flex flex-col justify-between">
           <button
             className="border-[1px] py-1 px-4 mt-8"
-            onClick={handleUpdate}
+            onClick={handleConfirm}
           >
-            更新
+            更新内容を確認する
           </button>
           <button
             className="border-[1px] py-1 px-4 mt-8"
@@ -89,9 +90,10 @@ const Component = ({
 const Container = (props: ContainerProps) => {
   const { id } = useParams();
   const { data, error, isLoading } = useGetUserDetailQuery(id || "");
-  const [updateUser, updatedResult] = useUpdateUserMutation();
   const [deleteUser, deletedResult] = useDeleteUserMutation();
   const [userInput, setUserInput] = useState<User>({} as User);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
@@ -109,8 +111,9 @@ const Container = (props: ContainerProps) => {
     }
   };
 
-  const handleUpdate = () => {
-    updateUser(userInput);
+  const handleConfirm = () => {
+    dispatch(userEditInput(userInput));
+    navigate("/user/confirm");
   };
 
   const handleDelete = () => {
@@ -134,7 +137,7 @@ const Container = (props: ContainerProps) => {
       user={userInput}
       isLoading={isLoading}
       handleChangeInput={handleChangeInput}
-      handleUpdate={handleUpdate}
+      handleConfirm={handleConfirm}
       handleDelete={handleDelete}
     />
   );

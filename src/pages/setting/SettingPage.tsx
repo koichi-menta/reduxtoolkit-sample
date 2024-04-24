@@ -1,10 +1,8 @@
 import { useDispatch } from "react-redux";
-import {
-  reserveInput,
-  type ReserveInput,
-} from "../../redux/slice/settingSlice";
+import { userEditInput } from "../../redux/slice/userEditInputSlice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { User } from "../../redux/api/user";
 
 type ContainerProps = {};
 type Props = {
@@ -52,7 +50,7 @@ const Component = ({ handleChange, handleConfirmButton }: Props) => (
 );
 
 const Container = (props: ContainerProps) => {
-  const [inputForm, setInputForm] = useState<ReserveInput>({} as ReserveInput);
+  const [inputForm, setInputForm] = useState<User>({} as User);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -63,7 +61,7 @@ const Container = (props: ContainerProps) => {
     });
   };
   const handleConfirmButton = () => {
-    dispatch(reserveInput(inputForm));
+    dispatch(userEditInput(inputForm));
     navigate("/setting/confirm");
   };
 
