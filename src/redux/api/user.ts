@@ -52,7 +52,7 @@ export const userApi = createApi({
           body: patchData,
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: (_result, _error, { id }) => [{ type: "User", id }],
     }),
     updateUserNoTag: builder.mutation<User, Partial<User>>({
       query: (user) => {

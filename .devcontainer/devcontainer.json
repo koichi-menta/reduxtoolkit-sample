@@ -1,0 +1,10 @@
+{
+  "extensions": [
+    "GitHub.copilot",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "formulahendry.auto-rename-tag",
+    "PKief.material-icon-theme"
+  ]
+}
